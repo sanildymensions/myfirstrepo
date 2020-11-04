@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  demands: 'siebeltools'
+pool: 'siebeltools'
 
 steps:
 - script: echo Hello, world!
