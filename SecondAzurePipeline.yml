@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  demands: 'siebeltools'
 
 steps:
 - script: echo Hello, world!
