@@ -9,11 +9,10 @@ trigger:
 pool: 'siebeltools'
 variables:
 - group: testgroup
-
 steps:
 - script: echo Hello, world!
 - script: $(CommandVariable)
-- script: echo $BASEDIR
+- script: echo $(BASEDIR)
   displayName: 'Run a one-line script'
 
 - script: |
