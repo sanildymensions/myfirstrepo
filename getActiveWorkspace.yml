@@ -10,7 +10,7 @@ pool: 'siebeltools'
 variables:
 - group: testgroup
 steps:
-- script: $(DY_UTIL) getactiveworkspacedetails $(DY_FILE) $(DY_ENV) $(DY_JIRAID) $(DY_BUILDNUMBER) $(DY_USERNAME) $(DY_PASSWORD)
+- script: $(DY_UTIL) getactiveworkspacedetails $(DY_CONF) $(DY_ENV) $(DY_JIRAID) $(DY_BUILDNUMBER) $(DY_USERNAME) $(DY_PASSWORD)
 #- script: echo $(DY_UTIL)
   displayName: 'Getting Active Wrokspace'
 
