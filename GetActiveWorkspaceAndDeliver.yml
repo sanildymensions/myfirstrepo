@@ -1,0 +1,20 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool: 'siebeltools'
+variables:
+- group: testgroup
+steps:
+- script: $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
+#- script: echo $(DY_UTIL)
+  displayName: 'Getting Active Wrokspace'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
