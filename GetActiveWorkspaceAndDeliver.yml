@@ -9,8 +9,12 @@ trigger:
 pool: 'siebeltools'
 variables:
 - group: testgroup
+- name: Command
+  value: "$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
+
 steps:
-- script: $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
+- script: 
+- script: echo "##vso[task.setvariable variable=podName3]$Command"
 #- script: echo $(DY_UTIL)
   displayName: 'Getting Active Wrokspace'
 
