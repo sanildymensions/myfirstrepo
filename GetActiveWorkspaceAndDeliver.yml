@@ -17,7 +17,7 @@ steps:
 - script: echo "##vso[task.setvariable variable=output]$Command"
 - script echo $(output)
 #- script: echo $(DY_UTIL)
-  displayName: 'Getting Active Wrokspace'
+displayName: 'Getting Active Wrokspace'
 
 #- script: |
 #    echo Add other tasks to build, test, and deploy your project.
