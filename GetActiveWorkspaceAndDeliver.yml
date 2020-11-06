@@ -3,14 +3,14 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 pool: 'siebeltools'
-
+variables:
+- group: testgroup
 stages:
 - stage: A
   jobs:
   - job: A1
     steps:
-    - script: |
-        echo $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
+    - script: $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
   - job: A2
     dependsOn: A1
     steps:
