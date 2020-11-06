@@ -28,7 +28,7 @@ stages:
 
 - stage: B
   variables:
-    wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname']
+    wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'] ]
   jobs:
   - job: B1
     steps:
