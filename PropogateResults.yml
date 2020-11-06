@@ -16,6 +16,7 @@ stages:
     steps:
     - powershell: |
         $output="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
+        Invoke-Expression "$output"
         Write-Host $output     
       displayName: GetToken
       name: gettoken
