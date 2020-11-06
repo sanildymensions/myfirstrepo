@@ -21,7 +21,7 @@ stages:
         Write-Host $output
         $pattern = "<WORKSPACE>.*<WORKSPACE>" 
         $result = [regex]::match($output, $pattern).Groups[1].Value
-        Write-Host "##vso[task.setvariable variable=token;isOutput=true]$result"    
+        Write-Host "##vso[task.setvariable variable=token;isOutput=true]$result"
       displayName: GetToken
       name: gettoken
   - job: A2
