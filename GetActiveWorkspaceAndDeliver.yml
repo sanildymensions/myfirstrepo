@@ -9,7 +9,7 @@ stages:
   jobs:
   - job: A1
     steps:
-    - bash: |
+    - script: |
         token=$($(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD))
         echo "##vso[task.setvariable variable=token;isOutput=true]$token"
       displayName: GetToken
