@@ -3,14 +3,29 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-jobs:
-- job: A
-  steps:
-  - bash: echo "A"
+stages:
+- stage: A
+  jobs:
+  - job: A1
+    steps:
+    - bash: echo "A1"
+  - job: A2
+    steps:
+    - bash: echo "A2"
 
-- job: B
-  steps:
-  - bash: echo "B"
+- stage: B
+  jobs:
+  - job: B1
+    steps:
+    - bash: echo "B1"
+  - job: B2
+    steps:
+    - bash: echo "B2"
+
+
+#- job: B
+#  steps:
+#  - bash: echo "B"
 
 #trigger:
 #- master
