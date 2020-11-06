@@ -18,7 +18,7 @@ stages:
     variables:
       token: $[ dependencies.A.outputs['gettoken.token'] ]
     steps:
-    - bash: echo $(token)
+    - bash: echo $token
 
 - stage: B
   jobs:
