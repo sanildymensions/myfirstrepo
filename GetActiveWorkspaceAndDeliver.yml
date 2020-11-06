@@ -8,7 +8,11 @@ stages:
   jobs:
   - job: A1
     steps:
-    - bash: echo "A1"
+    - bash: |
+      token=$(curl -H $HEADER -D $DATA www.example.com | grep -oEi $pattern | cut -d ':' -f 2 | cut -d '"' -f 2)
+      echo "##vso[task.setvariable variable=token;isOutput=true]$token"
+    displayName: GetToken
+    name: gettoken # you have to give the task a name to be able to access it through dependencies object below
   - job: A2
     steps:
     - bash: echo "A2"
