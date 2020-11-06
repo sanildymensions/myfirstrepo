@@ -10,26 +10,12 @@ stages:
   - job: A1
     steps:
     - script: |
-        set token=$($(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD))
-        echo "##vso[task.setvariable variable=token;isOutput=true]$token"
-      displayName: GetToken
-      name: gettoken
+        $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
   - job: A2
     dependsOn: A1
-    variables:
-      token: $[ dependencies.A1.outputs['gettoken.token'] ]
     steps:
-    - script: echo $(token)
-
-- stage: B
-  jobs:
-  - job: B1
-    steps:
-    - bash: echo "B1"
-  - job: B2
-    steps:
-    - bash: echo "B2"
-
+    - script: |
+        $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
 
 #- job: B
 #  steps:
