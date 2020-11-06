@@ -19,7 +19,7 @@ stages:
         Invoke-Expression $mycmd | Tee-Object -Variable output
         Write-Host Hello     
         Write-Host $output 
-        Write-Host "##vso[task.setvariable variable=token;isOutput=true]$token"    
+        Write-Host "##vso[task.setvariable variable=token;isOutput=true]$output"    
       displayName: GetToken
       name: gettoken
   - job: A2
