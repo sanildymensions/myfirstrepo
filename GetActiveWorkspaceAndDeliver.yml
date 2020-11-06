@@ -9,12 +9,16 @@ stages:
   - job: A1
     steps:
     - bash: |
-        token=$(echo Hello World)
+        token=$(echo asdkjhlkwdjlkj)
         echo "##vso[task.setvariable variable=token;isOutput=true]$token"
       displayName: GetToken
+      name: gettoken
   - job: A2
+    dependsOn: A1
+    variables:
+      token: $[ dependencies.A.outputs['gettoken.token'] ]
     steps:
-    - bash: echo "A2"
+    - bash: echo $(token)
 
 - stage: B
   jobs:
