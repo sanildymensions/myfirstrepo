@@ -6,6 +6,9 @@
 #Write-Host "##vso[task.setvariable variable=token;isOutput=true]$output"
 pool: 'siebeltools'
 
+variables:
+- group: testgroup
+
 stages:
 - stage: A
   jobs:
