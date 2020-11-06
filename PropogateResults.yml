@@ -2,7 +2,7 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-#$output=$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD
+#
 #Write-Host "##vso[task.setvariable variable=token;isOutput=true]$output"
 pool: 'siebeltools'
 
@@ -15,7 +15,8 @@ stages:
   - job: A1
     steps:
     - powershell: |
-        Write-Host $env:DY_UTIL     
+        $output=$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD
+        Write-Host $output     
       displayName: GetToken
       name: gettoken
   - job: A2
