@@ -15,8 +15,8 @@ stages:
   - job: A1
     steps:
     - powershell: |
-        $output="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
-        Invoke-Expression "$output"
+        $mycmd="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
+        Invoke-Expression "$mycmd" | Out-String -OutVariable $output
         Write-Host $output     
       displayName: GetToken
       name: gettoken
