@@ -29,7 +29,7 @@ stages:
 - stage: B
   variables:
     wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'] ]
-  condition: and(succeeded(), ne(variables.wsname, 'NIL'))
+  condition: and(succeeded(), ne(variables['wsname'], 'NIL'))
   jobs:
   - job: B1
     steps:
