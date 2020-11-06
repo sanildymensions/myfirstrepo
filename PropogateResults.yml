@@ -1,0 +1,65 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+pool: 'siebeltools'
+
+stages:
+- stage: A
+  jobs:
+  - job: A1
+    steps:
+    - script: |
+        set token=$($(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD))
+        echo "##vso[task.setvariable variable=token;isOutput=true]$token"
+      displayName: GetToken
+      name: gettoken
+  - job: A2
+    dependsOn: A1
+    variables:
+      token: $[ dependencies.A1.outputs['gettoken.token'] ]
+    steps:
+    - script: echo $(token)
+
+- stage: B
+  jobs:
+  - job: B1
+    steps:
+    - bash: echo "B1"
+  - job: B2
+    steps:
+    - bash: echo "B2"
+
+
+#- job: B
+#  steps:
+#  - bash: echo "B"
+
+#trigger:
+#- master
+
+#pool: 'siebeltools'
+#variables:
+#- group: testgroup
+#- name: COMMAND
+#  value: "$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
+
+
+#steps:
+#- script: |
+#    set OUTPUTVAR=`$(COMMAND)`
+#    set
+#  displayName: 'Getting Active Wrokspace'  
+#- script: echo "##vso[task.setvariable variable=output]$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
+#- script: echo $(COMMAND)
+#  displayName: 'Printing Command'
+#- script: echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
+#  displayName: 'Initializing Sause'
+#- script: echo $(sauce)  
+#- script: echo $(DY_UTIL)
+
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
