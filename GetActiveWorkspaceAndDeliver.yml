@@ -16,7 +16,7 @@ stages:
   - job: A2
     dependsOn: A1
     variables:
-      token: $[ dependencies.A.outputs['gettoken.token'] ]
+      token: $[ dependencies.A1.outputs['gettoken.token'] ]
     steps:
     - bash: echo $token
 
