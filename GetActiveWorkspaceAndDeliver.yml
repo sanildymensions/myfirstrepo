@@ -3,19 +3,26 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+jobs:
+- job: A
+  steps:
+  - bash: echo "A"
 
-pool: 'siebeltools'
-variables:
-- group: testgroup
+- job: B
+  steps:
+  - bash: echo "B"
+
+#trigger:
+#- master
+
+#pool: 'siebeltools'
+#variables:
+#- group: testgroup
 #- name: COMMAND
 #  value: "$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
 
-steps:
-- script: |
-    COMMAND="$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
-    echo "##vso[task.setvariable variable=podName3]${COMMAND}"
+
+#steps:
 #- script: |
 #    set OUTPUTVAR=`$(COMMAND)`
 #    set
