@@ -2,21 +2,10 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+#echo $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
 pool: 'siebeltools'
 variables:
 - group: testgroup
-stages:
-- stage: getActiveWorkspaceAndDeliver
-  jobs:
-  - job: getActiveWorkspace
-    steps:
-    - script: $(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)
-  - job: deliverWorkspace
-    dependsOn: getActiveWorkspace
-    steps:
-    - script: |
-        echo $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
-
 stages:
 - stage: getActiveWorkspace
   jobs:
