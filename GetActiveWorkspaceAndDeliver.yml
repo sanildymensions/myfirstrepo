@@ -9,7 +9,7 @@ stages:
   - job: A1
     steps:
     - bash: |
-        token=$(echo asdkjhlkwdjlkj)
+        token=$(echo "asdkjhlkwdjlkj")
         echo "##vso[task.setvariable variable=token;isOutput=true]$token"
       displayName: GetToken
       name: gettoken
@@ -18,7 +18,7 @@ stages:
     variables:
       token: $[ dependencies.A1.outputs['gettoken.token'] ]
     steps:
-    - bash: echo $token
+    - script: echo $(token)
 
 - stage: B
   jobs:
