@@ -13,7 +13,9 @@ variables:
   value: "$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
 
 steps:
-- script: $(COMMAND)
+- script: |
+    OUTPUTVAR=$(COMMAND)
+    echo the outputreturned is $OUTPUTVAR
   displayName: 'Getting Active Wrokspace'  
 #- script: echo "##vso[task.setvariable variable=output]$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
 #- script: echo $(COMMAND)
