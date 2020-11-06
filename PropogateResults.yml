@@ -18,7 +18,7 @@ stages:
         $mycmd="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
         Invoke-Expression $mycmd | Tee-Object -Variable output
         Write-Host Hello     
-        $pattern = "<WORKSPACE>.*<WORKSPACE>" 
+        $pattern = "<WORKSPACE>(.*)<WORKSPACE>" 
         $result = [regex]::match($output, $pattern).Groups[1].Value
         Write-Host $result
         Write-Host "##vso[task.setvariable variable=token;isOutput=true]$result"
