@@ -12,13 +12,17 @@ stages:
   - job: getActiveWorkspace
     steps:
     - powershell: |
-        $mycmd="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
+        $mycmd="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:MY_MAPPED_BUILDID DESJARDINS $env:MY_MAPPED_DY_USERNAME $env:MY_MAPPED_DY_PASSWORD"
         Invoke-Expression $mycmd | Tee-Object -Variable output
         Write-Host $mycmd
         $pattern = "<WORKSPACE>(.*)<WORKSPACE>" 
         $result = [regex]::match($output, $pattern).Groups[1].Value
         Write-Host $result
         Write-Host "##vso[task.setvariable variable=wsname;isOutput=true]$result"
+      env:
+        MY_MAPPED_DY_USERNAME: $(DY_USERNAME)
+        MY_MAPPED_DY_PASSWORD: $(DY_PASSWORD) 
+        MY_MAPPED_BUILDID: $(Build.BuildId)
       displayName: GetActiveWorkspace
       name: getactivews
 
