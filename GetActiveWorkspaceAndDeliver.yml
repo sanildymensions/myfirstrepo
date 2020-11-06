@@ -29,10 +29,11 @@ stages:
 - stage: B
   variables:
     wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'] ]
+  condition: and(succeeded(), ne(variables.wsname, "NIL"))
   jobs:
   - job: B1
     steps:
-    - script: echo $(wsname)
+    - script: echo $(wsname) hence will run deliver
   - job: B2
     steps:
-    - script: echo "B2"
+    - script: echo $(wsname) hence will run export
