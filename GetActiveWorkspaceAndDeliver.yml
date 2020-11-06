@@ -17,35 +17,29 @@ stages:
     - script: |
         echo $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
 
-#- job: B
-#  steps:
-#  - bash: echo "B"
+stages:
+- stage: getActiveWorkspace
+  jobs:
+  - job: getActiveWorkspace
+    steps:
+    - powershell: |
+        $mycmd="$env:DY_UTIL getactiveworkspace $env:DY_CONFIG $env:DY_ENV $env:DY_JIRAID $env:Build.BuildId DESJARDINS $env:DY_USERNAME $env:DY_PASSWORD"
+        Invoke-Expression $mycmd | Tee-Object -Variable output
+        Write-Host Hello     
+        $pattern = "<WORKSPACE>(.*)<WORKSPACE>" 
+        $result = [regex]::match($output, $pattern).Groups[1].Value
+        Write-Host $result
+        Write-Host "##vso[task.setvariable variable=wsname;isOutput=true]$result"
+      displayName: GetActiveWorkspace
+      name: getactivews
 
-#trigger:
-#- master
-
-#pool: 'siebeltools'
-#variables:
-#- group: testgroup
-#- name: COMMAND
-#  value: "$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
-
-
-#steps:
-#- script: |
-#    set OUTPUTVAR=`$(COMMAND)`
-#    set
-#  displayName: 'Getting Active Wrokspace'  
-#- script: echo "##vso[task.setvariable variable=output]$(DY_UTIL) getactiveworkspace $(DY_CONFIG) $(DY_ENV) $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD)"
-#- script: echo $(COMMAND)
-#  displayName: 'Printing Command'
-#- script: echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
-#  displayName: 'Initializing Sause'
-#- script: echo $(sauce)  
-#- script: echo $(DY_UTIL)
-
-
-#- script: |
-#    echo Add other tasks to build, test, and deploy your project.
-#    echo See https://aka.ms/yaml
-#  displayName: 'Run a multi-line script'
+- stage: B
+  variables:
+    wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname']
+  jobs:
+  - job: B1
+    steps:
+    - script: echo $(wsname)
+  - job: B2
+    steps:
+    - script: echo "B2"
