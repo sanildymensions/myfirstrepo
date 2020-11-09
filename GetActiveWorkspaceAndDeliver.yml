@@ -37,8 +37,11 @@ stages:
   - job: deliverWorkspace
     condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
-    - script: echo *$(wsname)* hence will run deliver *$(isValid)*
+  #  - script: $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
+    - script: echo "Will Export"
+      name: "DeliveringWorkspace"
   - job: exportWorkspcae
     condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
-    - script: echo *$(wsname)* hence will run export *$(isValid)*
+    - script: $(DY_UTIL) exportsifAAwithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) $(DY_USERNAME) $(DY_PASSWORD) DESJARDINS $(WORKSPACENAME)
+      name: "ExportingWorkspace"
