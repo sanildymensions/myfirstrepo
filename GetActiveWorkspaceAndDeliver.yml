@@ -26,16 +26,18 @@ stages:
       displayName: GetActiveWorkspace
       name: getactivews
 
-- stage: B
+- stage: deliverExportWorkspace
+  dependsOn: getActiveWorkspace
   variables:
     wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'] ]
     isValid: $[ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'],'NIL')]
   #condition: eq('${{ variables.isValid }}', 'True')
-  condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
   jobs:
-  - job: B1
+  - job: deliverWorkspace
+    condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
     - script: echo *$(wsname)* hence will run deliver *$(isValid)*
-  - job: B2
+  - job: exportWorkspcae
+    condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
     - script: echo *$(wsname)* hence will run export *$(isValid)*
