@@ -30,7 +30,8 @@ stages:
   variables:
     wsname: $[ stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'] ]
     isValid: $[ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'],'NIL')]
-  condition: eq('${{ variables.isValid }}', 'True')
+  #condition: eq('${{ variables.isValid }}', 'True')
+  condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'],'NIL')
   jobs:
   - job: B1
     steps:
