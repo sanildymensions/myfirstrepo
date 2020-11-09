@@ -43,5 +43,5 @@ stages:
   - job: exportWorkspcae
     condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
-    - script: $(DY_UTIL) exportsifAAwithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) $(DY_USERNAME) $(DY_PASSWORD) DESJARDINS $(WORKSPACENAME)
+    - script: $(DY_UTIL) exportsifanduploadwithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) $(DY_USERNAME) $(DY_PASSWORD) DESJARDINS $(WORKSPACENAME)
       name: "ExportingWorkspace"
