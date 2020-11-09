@@ -37,11 +37,11 @@ stages:
   - job: deliverWorkspace
     condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
-  #  - script: $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_DBUSERNAME) $(DY_DBPASSWORD) $(wsname)
+  #  - script: $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(wsname) $(DY_DBUSERNAME) $(DY_DBPASSWORD)
     - script: echo "Will Export"
       name: "DeliveringWorkspace"
   - job: exportWorkspcae
     condition: ne(stageDependencies.getActiveWorkspace.getActiveWorkspace.outputs['getactivews.wsname'], 'NIL')
     steps:
-    - script: $(DY_UTIL) exportsifanduploadwithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) $(DY_DBUSERNAME) $(DY_DBPASSWORD) DESJARDINS $(wsname)
+    - script: $(DY_UTIL) exportsifanduploadwithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) $(DY_USERNAME) $(DY_PASSWORD) DESJARDINS $(wsname) $(DY_DBUSERNAME) $(DY_DBPASSWORD)
       name: "ExportingWorkspace"
