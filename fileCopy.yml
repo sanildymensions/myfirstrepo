@@ -10,8 +10,10 @@ variables:
 steps:
     - task: WindowsMachineFileCopy@2
       inputs:
-          SourcePath: H:\console_getworkspacestatus_113.log
+#          SourcePath: H:\console_getworkspacestatus_113.log
+          SourcePath: D:\sanil\dymensions\logs 
           machineNames: 192.168.18.110
           adminUserName: dymensions
           adminPassword: Dymensions2017
-          TargetPath: D:\
+          TargetPath: D:\logs
+          copyFilesInParallel: true
