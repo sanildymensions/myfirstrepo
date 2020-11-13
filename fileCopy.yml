@@ -12,4 +12,6 @@ steps:
       inputs:
           SourcePath: H:\console_getworkspacestatus_113.log
           machineNames: 192.168.18.110
+          adminUserName: dymensions
+          adminPassword: Dymensions2017
           TargetPath: D:\
