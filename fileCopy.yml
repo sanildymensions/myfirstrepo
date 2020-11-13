@@ -7,6 +7,8 @@
 pool: 'siebeltools'
 variables:
 - group: testgroup
-stages:
-- stage: copyFiles
-
+steps:
+    - task: WindowsMachineFileCopy@2
+      inputs:
+          SourcePath: H:\console_getworkspacestatus_113.log
+          TargetPath: D:\
