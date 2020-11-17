@@ -1,0 +1,18 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+resources:
+  repositories:
+  - endpoint: https://github.com/sanilrodrigues/SIEBEL_CICD.git
+    repository: SIEBEL_CICD
+    type: git
+    name: MyProject/SIEBEL_CICD
+    ref: main
+    
+pool: 'siebeltools'
+variables:
+- group: testgroup
+steps:
+- checkout: SIEBEL_CICD
