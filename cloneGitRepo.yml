@@ -5,8 +5,8 @@
 
 resources:
   repositories:
-  - endpoint: https://github.com/sanilrodrigues/SIEBEL_CICD.git
-    repository: SIEBEL_CICD
+  - repository: SIEBEL_CICD
+    endpoint: https://github.com/sanilrodrigues/SIEBEL_CICD.git
     type: git
     name: MyProject/SIEBEL_CICD
     ref: main
