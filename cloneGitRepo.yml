@@ -6,9 +6,9 @@
 resources:
   repositories:
   - repository: SIEBEL_CICD
-    endpoint: sanilrodrigues
+    endpoint: externalrepo
     type: git
-    name: sanilrodrigues/SIEBEL_CICD
+    name: externalrepo/SIEBEL_CICD
     ref: main
     
 pool: 'siebeltools'
