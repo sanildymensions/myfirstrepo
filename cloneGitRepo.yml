@@ -6,7 +6,7 @@
 resources:
   repositories:
   - repository: myfirstproject
-    endpoint: myfirstproject
+    endpoint: sanilrodrigues
     type: git
     name: myfirstproject/myfirstrepo
     ref: main
