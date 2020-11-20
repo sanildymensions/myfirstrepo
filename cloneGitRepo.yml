@@ -6,7 +6,7 @@
 resources:
   repositories:
   - repository: myfirstproject
-    endpoint: sanilrodrigues
+    endpoint: mynewconnection
     type: github
     name: sanilrodrigues/SIEBEL_CICD
     ref: main
