@@ -5,7 +5,7 @@
 
 resources:
   repositories:
-  - repository: SIEBEL_CICD
+  - repository: siebelrepo
     endpoint: externalrepo
     type: git
     name: myfirstproject/SIEBEL_CICD
@@ -15,4 +15,4 @@ pool: 'siebeltools'
 variables:
 - group: testgroup
 steps:
-- checkout: SIEBEL_CICD
+- checkout: siebelrepo
