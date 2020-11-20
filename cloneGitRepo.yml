@@ -8,7 +8,7 @@ resources:
   - repository: myfirstproject
     endpoint: sanilrodrigues
     type: git
-    name: myfirstproject/myfirstrepo
+    name: sanilrodrigues/SIEBEL_CICD
     ref: main
     
 pool: 'siebeltools'
