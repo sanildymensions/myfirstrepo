@@ -6,7 +6,7 @@
 resources:
   repositories:
   - repository: siebelrepo
-    endpoint: externalrepo
+    endpoint: github.com_sanilrodrigues
     type: git
     name: myfirstproject/SIEBEL_CICD
     ref: main
