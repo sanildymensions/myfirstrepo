@@ -16,3 +16,4 @@ variables:
 - group: testgroup
 steps:
 - checkout: myfirstproject
+  path: siebel_cicd
