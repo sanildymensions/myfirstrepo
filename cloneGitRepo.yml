@@ -5,14 +5,14 @@
 
 resources:
   repositories:
-  - repository: siebelrepo
-    endpoint: github.com_sanilrodrigues
+  - repository: myfirstproject
+    endpoint: myfirstproject
     type: git
-    name: myfirstprpoject/SIEBEL_CICD
+    name: myfirstproject/SIEBEL_CICD
     ref: main
     
 pool: 'siebeltools'
 variables:
 - group: testgroup
 steps:
-- checkout: siebelrepo
+- checkout: myfirstproject
