@@ -8,12 +8,14 @@ pool: 'siebeltools'
 variables:
 - group: testgroup
 steps:
-    - task: WindowsMachineFileCopy@2
+    - task: PowerShellOnTargetMachines@3
       inputs:
 #          SourcePath: H:\console_getworkspacestatus_113.log
           SourcePath: D:\sanil\dymensions\logs 
-          machineNames: 192.168.18.110
-          adminUserName: dymensions
-          adminPassword: Dymensions2017
-          TargetPath: D:\logs
-          copyFilesInParallel: true
+          machines: 192.168.18.110
+          userName: dymensions
+          userPassword: Dymensions2017
+          criptType: Inline
+          inlineScript: |
+            # Write your powershell commands here.
+            Write-Host "Hello World"
