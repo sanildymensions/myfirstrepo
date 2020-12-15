@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+#echo $(DY_UTIL) deliverworkspacewithname $(DY_CONFIG) DEV $(DY_JIRAID) $(Build.BuildId) DESJARDINS $(DY_USERNAME) $(DY_PASSWORD) $(WORKSPACENAME)
+
+pool: 'siebeltools'
+variables:
+- group: testgroup
+steps:
+    - task: WindowsMachineFileCopy@2
+      inputs:
+#          SourcePath: H:\console_getworkspacestatus_113.log
+          SourcePath: D:\sanil\dymensions\logs 
+          machineNames: 192.168.18.110
+          adminUserName: dymensions
+          adminPassword: Dymensions2017
+          TargetPath: D:\logs
+          copyFilesInParallel: true
