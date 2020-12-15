@@ -12,7 +12,7 @@ steps:
       inputs:
 #          SourcePath: H:\console_getworkspacestatus_113.log
           SourcePath: D:\sanil\dymensions\logs 
-          machines: test.dymensions.io
+          machines: testhost.dymensions.io
           userName: dymensions
           userPassword: Dymensions2017
           criptType: Inline
