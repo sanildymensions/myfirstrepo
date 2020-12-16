@@ -15,7 +15,7 @@ steps:
           machines: testhost.dymensions.io
           userName: dymensions
           userPassword: Dymensions2017
-          communicationProtocol: 'Https'
+          communicationProtocol: 'Http'
           criptType: Inline
           inlineScript: |
             # Write your powershell commands here.
